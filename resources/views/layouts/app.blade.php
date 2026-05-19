@@ -33,7 +33,7 @@
                             ['route' => 'home',       'label' => 'Home'],
                             ['route' => 'about',      'label' => 'About'],
                             ['route' => 'portfolio',  'label' => 'Portfolio'],
-                            ['route' => 'experience', 'label' => 'Experience'],
+                            // ['route' => 'experience', 'label' => 'Experience'],
                             ['route' => 'contact',    'label' => 'Contact'],
                             ['route' => 'blog.index', 'label' => 'Blog', 'routeIs' => 'blog.*'],
                         ];
@@ -83,7 +83,7 @@
                         ['route' => 'home',       'label' => 'Home'],
                         ['route' => 'about',      'label' => 'About'],
                         ['route' => 'portfolio',  'label' => 'Portfolio'],
-                        ['route' => 'experience', 'label' => 'Experience'],
+                        // ['route' => 'experience', 'label' => 'Experience'],
                         ['route' => 'contact',    'label' => 'Contact'],
                         ['route' => 'blog.index', 'label' => 'Blog', 'routeIs' => 'blog.*'],
                     ];
