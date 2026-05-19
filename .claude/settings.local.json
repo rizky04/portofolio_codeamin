@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan *)",
+      "Bash(xargs grep -l \"class Section\\\\b\")",
+      "Bash(grep -rn \"Section\\\\|Schemas\\\\\\\\\\\\Components\" e:/tes/portofolio/vendor/filament/forms/src/Components/ --include=\"*.php\")",
+      "Bash(disown)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8000)",
+      "Bash(grep -v \"^$\")",
+      "Bash(npm run *)",
+      "PowerShell(Get-ChildItem \"e:\\\\tes\\\\portofolio\\\\storage\" -Recurse -File | Where-Object {$_.Extension -match \"\\\\.\\(png|jpg|jpeg|gif|webp\\)$\"} | Format-Table FullName)"
+    ]
+  }
+}

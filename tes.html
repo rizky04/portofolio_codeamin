@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Rotama Duta Niaga | Satona Group</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Animasi transisi halaman */
+        .page-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .page-content.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Navigasi aktif */
+        .nav-link.active {
+            color: #0284c7;
+            font-weight: 700;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0284c7;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Header & Navigation -->
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigate('beranda')">
+                    <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center mr-3 shadow-md">
+                        <span class="text-white font-bold text-xl">R</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-extrabold text-xl text-gray-900 leading-none">ROTAMA</span>
+                        <span class="font-medium text-xs text-brand-600 tracking-widest mt-1 uppercase">Duta Niaga</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <button onclick="navigate('beranda')" id="nav-beranda" class="nav-link relative text-gray-600 hover:text-brand-600 font-medium transition">Beranda</button>
+                    <button onclick="navigate('tentang')" id="nav-tentang" class="nav-link relative text-gray-600 hover:text-brand-600 font-medium transition">Tentang Kami</button>
+                    <button onclick="navigate('layanan')" id="nav-layanan" class="nav-link relative text-gray-600 hover:text-brand-600 font-medium transition">Layanan</button>
+                    <button onclick="navigate('produk')" id="nav-produk" class="nav-link relative text-gray-600 hover:text-brand-600 font-medium transition">Produk</button>
+                    <button onclick="navigate('kontak')" id="nav-kontak" class="nav-link relative text-gray-600 hover:text-brand-600 font-medium transition">Kontak</button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-600 focus:outline-none">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <button onclick="navigate('beranda')" class="text-left px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg font-medium">Beranda</button>
+                <button onclick="navigate('tentang')" class="text-left px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg font-medium">Tentang Kami</button>
+                <button onclick="navigate('layanan')" class="text-left px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg font-medium">Layanan</button>
+                <button onclick="navigate('produk')" class="text-left px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg font-medium">Produk</button>
+                <button onclick="navigate('kontak')" class="text-left px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg font-medium">Kontak</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow pt-20">
+
+        <!-- ================= HALAMAN 1: BERANDA ================= -->
+        <div id="page-beranda" class="page-content active">
+            <!-- Hero -->
+            <section class="relative bg-brand-900 text-white overflow-hidden py-32 lg:py-48">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Industrial Background" class="w-full h-full object-cover opacity-20 mix-blend-overlay">
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/90 to-transparent"></div>
+                </div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="max-w-3xl">
+                        <span class="inline-block py-1 px-3 rounded-full bg-brand-800 border border-brand-700 text-brand-100 text-sm font-semibold tracking-wider mb-6">SATONA GROUP COMPANY</span>
+                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+                            Solusi Distribusi <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Bahan Kimia</span> Terpercaya
+                        </h1>
+                        <p class="text-xl text-brand-100 mb-10 leading-relaxed font-light">
+                            Mengedepankan prinsip <strong class="text-white">"Safe and Sound"</strong> dalam setiap penanganan bahan kimia industri, logistik cairan, dan penyediaan pupuk berkualitas.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="navigate('layanan')" class="bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-xl font-bold transition shadow-lg shadow-brand-600/30 flex items-center justify-center">
+                                Eksplorasi Layanan
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </button>
+                            <button onclick="navigate('kontak')" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-bold transition flex items-center justify-center">
+                                Hubungi Kami
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Stats/Features -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-brand-50 p-3 rounded-xl text-brand-600">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Safe & Sound</h3>
+                                <p class="text-gray-500">Standar keamanan tertinggi dalam penanganan dan pengiriman bahan kimia berbahaya (B3).</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-emerald-50 p-3 rounded-xl text-emerald-600">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Armada Mumpuni</h3>
+                                <p class="text-gray-500">Dilengkapi dengan truk tangki, isotank, dan bak terbuka yang bersertifikasi lengkap.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-purple-50 p-3 rounded-xl text-purple-600">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Infrastruktur Kuat</h3>
+                                <p class="text-gray-500">Didukung oleh fasilitas storage dan jasa handling profesional untuk industri.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= HALAMAN 2: TENTANG KAMI ================= -->
+        <div id="page-tentang" class="page-content py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-base text-brand-600 font-semibold tracking-wide uppercase">Profil Perusahaan</h2>
+                    <p class="mt-2 text-4xl font-extrabold text-gray-900 sm:text-5xl">PT Rotama Duta Niaga</p>
+                    <div class="w-24 h-1.5 bg-brand-600 mx-auto rounded-full mt-6"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1577700201088-2949666014b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Office Building" class="rounded-2xl shadow-2xl">
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">Bagian dari Satona Group</h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            PT Rotama Duta Niaga adalah entitas bisnis yang tergabung dalam Satona Group. Kami berfokus pada penyediaan layanan terintegrasi untuk kebutuhan industri, mulai dari distribusi bahan kimia hulu hingga penyediaan produk turunan hilir seperti pupuk pertanian.
+                        </p>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Filosofi kerja kami <strong>"Safe and Sound"</strong> menjamin bahwa setiap proses—mulai dari pengambilan, pengemasan, hingga pengiriman—dilakukan dengan standar keselamatan (HSE) yang ketat dan efisiensi tinggi.
+                        </p>
+                        <div class="bg-brand-50 border-l-4 border-brand-600 p-6 rounded-r-xl">
+                            <p class="text-brand-900 italic font-medium">"Komitmen kami adalah menjadi rantai pasok industri kimia dan pertanian paling andal di Indonesia."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visi Misi -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Visi Kami</h4>
+                        <p class="text-gray-600 leading-relaxed text-lg">Menjadi perusahaan distribusi dan logistik bahan kimia B3 dan non-B3 terkemuka yang mengutamakan keselamatan, inovasi, dan kepuasan pelanggan di tingkat nasional.</p>
+                    </div>
+                    <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Misi Kami</h4>
+                        <ul class="text-gray-600 leading-relaxed text-lg space-y-3">
+                            <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> Menyediakan armada yang tersertifikasi dan prima.</li>
+                            <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> Menerapkan standar operasional (SOP) keselamatan ketat.</li>
+                            <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> Memberikan solusi pengemasan dan konstruksi strategis bagi mitra bisnis.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN 3: LAYANAN ================= -->
+        <div id="page-layanan" class="page-content bg-white py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-base text-brand-600 font-semibold tracking-wide uppercase">Layanan & Keahlian</h2>
+                    <p class="mt-2 text-4xl font-extrabold text-gray-900 sm:text-5xl">Apa Yang Kami Lakukan</p>
+                    <div class="w-24 h-1.5 bg-brand-600 mx-auto rounded-full mt-6"></div>
+                    <p class="mt-6 max-w-2xl text-xl text-gray-500 mx-auto">Kami menyediakan solusi end-to-end untuk kebutuhan industri kimia, mulai dari pengangkutan skala besar hingga eceran.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Distribusi -->
+                    <div class="group relative bg-gray-50 rounded-3xl p-8 hover:bg-brand-600 transition duration-300 overflow-hidden">
+                        <div class="absolute right-0 top-0 opacity-5 transform translate-x-4 -translate-y-4 group-hover:text-white transition duration-300">
+                            <svg class="w-48 h-48" fill="currentColor" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        </div>
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-brand-500">
+                            <svg class="w-8 h-8 text-brand-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-white transition">Distribusi Bahan Kimia</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed group-hover:text-brand-100 transition">Melayani jasa distribusi bahan kimia cair dan padat menggunakan armada truk tangki, isotank, dan bak terbuka. Seluruh armada dan pengemudi kami memiliki sertifikasi penanganan Barang Berbahaya dan Beracun (B3).</p>
+                    </div>
+
+                    <!-- Retail -->
+                    <div class="group relative bg-gray-50 rounded-3xl p-8 hover:bg-brand-600 transition duration-300 overflow-hidden">
+                        <div class="absolute right-0 top-0 opacity-5 transform translate-x-4 -translate-y-4 group-hover:text-white transition duration-300">
+                            <svg class="w-48 h-48" fill="currentColor" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-brand-500">
+                            <svg class="w-8 h-8 text-brand-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-white transition">Retail Produk Kimia</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed group-hover:text-brand-100 transition">Menyediakan penjualan bahan kimia secara eceran (retail) seperti Asam Sulfat (H2SO4) dan Asam Klorida (HCl). Pengemasan disesuaikan dengan kebutuhan pelanggan mulai dari jerigen, drum, hingga IBC tank.</p>
+                    </div>
+
+                    <!-- Handling -->
+                    <div class="group relative bg-gray-50 rounded-3xl p-8 hover:bg-brand-600 transition duration-300 overflow-hidden">
+                        <div class="absolute right-0 top-0 opacity-5 transform translate-x-4 -translate-y-4 group-hover:text-white transition duration-300">
+                            <svg class="w-48 h-48" fill="currentColor" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        </div>
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-brand-500">
+                            <svg class="w-8 h-8 text-brand-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-white transition">Handling & Packing</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed group-hover:text-brand-100 transition">Memberikan layanan handling pemindahan bahan kimia antar tangki atau kemasan, serta layanan logistik penyimpanan sementara yang aman di area fasilitas klien maupun warehouse kami.</p>
+                    </div>
+
+                    <!-- Konstruksi -->
+                    <div class="group relative bg-gray-50 rounded-3xl p-8 hover:bg-brand-600 transition duration-300 overflow-hidden">
+                        <div class="absolute right-0 top-0 opacity-5 transform translate-x-4 -translate-y-4 group-hover:text-white transition duration-300">
+                            <svg class="w-48 h-48" fill="currentColor" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        </div>
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-brand-500">
+                            <svg class="w-8 h-8 text-brand-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-white transition">Konstruksi Industri</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed group-hover:text-brand-100 transition">Selain distribusi, kami melayani jasa pengerjaan konstruksi fasilitas pendukung industri kimia. Dari instalasi perpipaan, pembuatan tangki penyimpanan, hingga infrastruktur pabrik.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN 4: PRODUK ================= -->
+        <div id="page-produk" class="page-content bg-gray-50 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-base text-brand-600 font-semibold tracking-wide uppercase">Katalog</h2>
+                    <p class="mt-2 text-4xl font-extrabold text-gray-900 sm:text-5xl">Produk Kami</p>
+                    <div class="w-24 h-1.5 bg-brand-600 mx-auto rounded-full mt-6"></div>
+                </div>
+
+                <!-- Kategori: Pupuk -->
+                <div class="mb-16">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-8 flex items-center">
+                        <span class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mr-3 text-lg"><i class="fas fa-leaf"></i></span>
+                        Pupuk Pertanian
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Product Card -->
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-shadow group">
+                            <div class="h-64 bg-emerald-50 p-6 flex items-center justify-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-emerald-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                                <img src="https://placehold.co/400x300/e6f4ea/2e7d32?text=Pupuk+ZK" alt="Pupuk ZK" class="w-full h-full object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-8">
+                                <span class="text-xs font-bold tracking-widest text-emerald-600 uppercase mb-2 block">Agrikultur</span>
+                                <h4 class="text-2xl font-bold text-gray-900 mb-3">Pupuk ZK</h4>
+                                <p class="text-gray-500">Pupuk Kalium Sulfat berkualitas tinggi untuk meningkatkan hasil dan kualitas panen tanaman Anda.</p>
+                            </div>
+                        </div>
+                        <!-- Product Card -->
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-shadow group">
+                            <div class="h-64 bg-emerald-50 p-6 flex items-center justify-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-emerald-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                                <img src="https://placehold.co/400x300/e6f4ea/2e7d32?text=Phonska+Plus" alt="Phonska Plus" class="w-full h-full object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-8">
+                                <span class="text-xs font-bold tracking-widest text-emerald-600 uppercase mb-2 block">Agrikultur</span>
+                                <h4 class="text-2xl font-bold text-gray-900 mb-3">Phonska Plus</h4>
+                                <p class="text-gray-500">Pupuk majemuk NPK yang diperkaya dengan Zink untuk memacu pertumbuhan vegetatif tanaman.</p>
+                            </div>
+                        </div>
+                        <!-- Product Card -->
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-shadow group">
+                            <div class="h-64 bg-emerald-50 p-6 flex items-center justify-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-emerald-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                                <img src="https://placehold.co/400x300/e6f4ea/2e7d32?text=Pupuk+Urea" alt="Urea" class="w-full h-full object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-8">
+                                <span class="text-xs font-bold tracking-widest text-emerald-600 uppercase mb-2 block">Agrikultur</span>
+                                <h4 class="text-2xl font-bold text-gray-900 mb-3">Pupuk Urea</h4>
+                                <p class="text-gray-500">Sumber Nitrogen utama yang sangat krusial bagi pembentukan klorofil daun tanaman hijau.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kategori: Bahan Kimia -->
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-8 flex items-center">
+                        <span class="w-8 h-8 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center mr-3 text-lg"><i class="fas fa-flask"></i></span>
+                        Bahan Kimia Industri
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <!-- Product Card -->
+                        <div class="flex flex-col sm:flex-row bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-shadow group">
+                            <div class="sm:w-2/5 bg-brand-50 p-6 flex items-center justify-center">
+                                <img src="https://placehold.co/300x300/e0f2fe/0284c7?text=Asam+Sulfat" alt="Asam Sulfat" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-8 sm:w-3/5 flex flex-col justify-center">
+                                <span class="text-xs font-bold tracking-widest text-brand-600 uppercase mb-2 block">Liquid Chemical</span>
+                                <h4 class="text-2xl font-bold text-gray-900 mb-3">Asam Sulfat (H2SO4)</h4>
+                                <p class="text-gray-500 mb-4">Tersedia dalam berbagai konsentrasi. Kami melayani pengiriman curah (truk tangki) maupun kemasan jerigen/IBC.</p>
+                                <button onclick="navigate('kontak')" class="mt-auto self-start text-brand-600 font-bold hover:text-brand-800 transition">Pesan Sekarang &rarr;</button>
+                            </div>
+                        </div>
+                        <!-- Product Card -->
+                        <div class="flex flex-col sm:flex-row bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-shadow group">
+                            <div class="sm:w-2/5 bg-brand-50 p-6 flex items-center justify-center">
+                                <img src="https://placehold.co/300x300/e0f2fe/0284c7?text=Asam+Klorida" alt="Asam Klorida" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-8 sm:w-3/5 flex flex-col justify-center">
+                                <span class="text-xs font-bold tracking-widest text-brand-600 uppercase mb-2 block">Liquid Chemical</span>
+                                <h4 class="text-2xl font-bold text-gray-900 mb-3">Asam Klorida (HCl)</h4>
+                                <p class="text-gray-500 mb-4">Penyediaan HCl untuk berbagai kebutuhan proses produksi industri, pengolahan air, dan pembersihan.</p>
+                                <button onclick="navigate('kontak')" class="mt-auto self-start text-brand-600 font-bold hover:text-brand-800 transition">Pesan Sekarang &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN 5: KONTAK ================= -->
+        <div id="page-kontak" class="page-content bg-white py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-base text-brand-600 font-semibold tracking-wide uppercase">Hubungi Kami</h2>
+                    <p class="mt-2 text-4xl font-extrabold text-gray-900 sm:text-5xl">Mari Berkolaborasi</p>
+                    <div class="w-24 h-1.5 bg-brand-600 mx-auto rounded-full mt-6"></div>
+                    <p class="mt-6 max-w-2xl text-xl text-gray-500 mx-auto">Tim kami siap membantu kebutuhan bisnis industri Anda.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Info Kontak -->
+                    <div>
+                        <div class="bg-gray-50 p-10 rounded-3xl mb-8 border border-gray-100">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-8">Informasi Kantor</h3>
+                            <ul class="space-y-6">
+                                <li class="flex items-start">
+                                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-600 shadow-sm mr-4 flex-shrink-0">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 text-lg">Alamat Head Office</h4>
+                                        <p class="text-gray-600 mt-1">Jl Raya Driyorejo No 134, Dsn Cangkir,<br>Kec. Driyorejo, Kab. Gresik,<br>Jawa Timur, Indonesia</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-600 shadow-sm mr-4 flex-shrink-0">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 text-lg">Telepon / WhatsApp</h4>
+                                        <p class="text-gray-600 mt-1"><a href="https://wa.me/6285385903800" target="_blank" class="hover:text-brand-600">0853-8590-3800</a></p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-600 shadow-sm mr-4 flex-shrink-0">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 text-lg">Email</h4>
+                                        <p class="text-gray-600 mt-1"><a href="mailto:pt.rotama@satona.co.id" class="hover:text-brand-600">pt.rotama@satona.co.id</a></p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Formulir -->
+                    <div class="bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Kirim Pesan</h3>
+                        <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Pesan Anda telah dikirim! (Demo)');">
+                            <div class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                                    <input type="text" id="name" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Masukkan nama Anda" required>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                        <input type="email" id="email" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="email@perusahaan.com" required>
+                                    </div>
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Nomor Telepon</label>
+                                        <input type="tel" id="phone" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="08xx xxxx xxxx">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Pesan / Kebutuhan</label>
+                                    <textarea id="message" rows="4" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition resize-none" placeholder="Jelaskan kebutuhan pengiriman atau produk Anda..." required></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-600/30 transition">Kirim Pesan Sekarang</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Umum -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-auto border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
+                <div>
+                    <span class="text-2xl font-extrabold text-white tracking-tight">ROTAMA</span>
+                    <span class="text-brand-500 font-bold ml-1">Duta Niaga</span>
+                    <p class="mt-2 text-sm">Bagian dari <strong class="text-white">Satona Group</strong></p>
+                </div>
+                <div class="text-sm">
+                    &copy; <script>document.write(new Date().getFullYear())</script> PT Rotama Duta Niaga. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Navigasi Halaman SPA -->
+    <script>
+        // Fungsi untuk berpindah "halaman"
+        function navigate(pageId) {
+            // 1. Sembunyikan semua konten halaman
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 2. Tampilkan halaman yang dituju
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // 3. Update status active pada menu navigasi
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeNav = document.getElementById('nav-' + pageId);
+            if(activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            // 4. Scroll ke atas
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 5. Tutup mobile menu jika sedang terbuka
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Toggle Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Set halaman default saat pertama kali load
+        window.onload = () => {
+            navigate('beranda');
+        };
+    </script>
+</body>
+</html>

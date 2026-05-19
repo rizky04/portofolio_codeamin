@@ -1,0 +1,211 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    --color-primary:            #6366f1;
+    --color-primary-dark:       #4f46e5;
+    --color-primary-container:  #818cf8;
+    --color-secondary:          #ec4899;
+    --color-tertiary:           #06b6d4;
+    --color-surface:            #f8f9ff;
+    --color-surface-low:        #eef2ff;
+    --color-surface-container:  #e0e7ff;
+    --color-surface-high:       #c7d2fe;
+    --color-on-surface:         #0f172a;
+    --color-on-surface-variant: #475569;
+    --color-outline:            #94a3b8;
+    --color-outline-variant:    #cbd5e1;
+
+    --color-dark-base:   #080f1e;
+    --color-dark-card:   #0d1628;
+    --color-dark-border: #1e2d4a;
+}
+
+@layer base {
+    body { background-color: #f8f9ff; color: #0f172a; }
+
+    ::selection {
+        background: #6366f1;
+        color: #fff;
+    }
+}
+
+@layer utilities {
+
+    /* ── Glass cards ─────────────────────────────────────── */
+    .glass-card {
+        background: rgba(255,255,255,0.65);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255,255,255,0.75);
+        box-shadow: 0 4px 40px rgba(99,102,241,0.07), 0 1px 4px rgba(99,102,241,0.05);
+    }
+    .glass-dark {
+        background: rgba(13,22,40,0.7);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(99,102,241,0.15);
+        box-shadow: 0 4px 40px rgba(0,0,0,0.4);
+    }
+
+    /* ── Gradient border card ────────────────────────────── */
+    .gradient-border {
+        background: linear-gradient(white, white) padding-box,
+                    linear-gradient(135deg, #6366f1 0%, #ec4899 100%) border-box;
+        border: 1.5px solid transparent;
+    }
+    .gradient-border-dark {
+        background: linear-gradient(#0d1628, #0d1628) padding-box,
+                    linear-gradient(135deg, #6366f1 0%, #ec4899 100%) border-box;
+        border: 1px solid transparent;
+    }
+
+    /* ── Text gradients ──────────────────────────────────── */
+    .text-gradient {
+        background: linear-gradient(135deg, #6366f1 0%, #ec4899 60%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .text-gradient-gold {
+        background: linear-gradient(135deg, #f59e0b, #f97316);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* ── Glows ───────────────────────────────────────────── */
+    .glow-primary {
+        box-shadow: 0 0 40px rgba(99,102,241,0.35), 0 8px 32px rgba(99,102,241,0.18);
+    }
+    .glow-sm {
+        box-shadow: 0 0 20px rgba(99,102,241,0.25);
+    }
+    .shadow-card {
+        box-shadow: 0 4px 24px rgba(15,23,42,0.08), 0 1px 6px rgba(15,23,42,0.04);
+    }
+    .shadow-card-hover {
+        box-shadow: 0 12px 48px rgba(99,102,241,0.18), 0 4px 16px rgba(99,102,241,0.1);
+    }
+
+    /* ── Chip / badge ────────────────────────────────────── */
+    .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.2rem 0.6rem;
+        border-radius: 9999px;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+    }
+
+    /* ── Hero dark background with mesh ─────────────────── */
+    .hero-bg {
+        background-color: #080f1e;
+        background-image:
+            radial-gradient(ellipse 80% 60% at 20% 40%, rgba(99,102,241,0.18) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 50% at 80% 20%, rgba(236,72,153,0.12) 0%, transparent 55%),
+            radial-gradient(ellipse 50% 40% at 60% 80%, rgba(6,182,212,0.08) 0%, transparent 50%);
+    }
+    .hero-grid {
+        background-image:
+            linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+        background-size: 60px 60px;
+    }
+
+    /* ── Section label ───────────────────────────────────── */
+    .section-label {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #6366f1;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .section-label::before {
+        content: '';
+        display: inline-block;
+        width: 1.5rem;
+        height: 2px;
+        background: linear-gradient(90deg, #6366f1, #ec4899);
+        border-radius: 2px;
+    }
+
+    /* ── Scroll reveal init ──────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(32px); }
+    .reveal.visible { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
+
+    /* ── Marquee infinite scroll ─────────────────────────── */
+    .marquee-track {
+        animation: marquee 30s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* ── Noise overlay ───────────────────────────────────── */
+    .noise::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        border-radius: inherit;
+    }
+
+    /* ── Animated gradient button ────────────────────────── */
+    .btn-gradient {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+        background-size: 200% 200%;
+        animation: gradient-shift 3s ease infinite;
+    }
+    @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* ── Floating orb decorations ────────────────────────── */
+    .orb {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(80px);
+        pointer-events: none;
+    }
+
+    /* ── Nav pill active ─────────────────────────────────── */
+    .nav-link {
+        position: relative;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #475569;
+        transition: color 0.2s, background 0.2s;
+    }
+    .nav-link:hover {
+        color: #6366f1;
+        background: #eef2ff;
+    }
+    .nav-link.active {
+        color: #6366f1;
+        background: #eef2ff;
+        font-weight: 600;
+    }
+}
