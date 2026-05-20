@@ -13,7 +13,7 @@ function onInView(selector, callback, options = {}) {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '-5% 0px -5% 0px', ...options });
+    }, { threshold: 0.05, rootMargin: '0px 0px -3% 0px', ...options });
 
     elements.forEach(el => observer.observe(el));
 }
