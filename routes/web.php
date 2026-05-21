@@ -17,6 +17,8 @@ Route::get('/cv/download', [ProfileController::class, 'downloadCv'])->name('cv.d
 Route::get('/umroh', [StaticPageController::class, 'umroh'])->name('umroh');
 Route::get('/servicemobil', [StaticPageController::class, 'serviceMobil'])->name('servicemobil');
 Route::get('/padel', [StaticPageController::class, 'padel'])->name('padel');
+Route::get('/hijabstore', [StaticPageController::class, 'hijabstore'])->name('hijabstore');
+
 
 
 Route::prefix('blog')->name('blog.')->group(function () {

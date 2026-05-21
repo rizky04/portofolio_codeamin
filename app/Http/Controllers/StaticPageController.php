@@ -74,4 +74,8 @@ class StaticPageController extends Controller
     {
         return view('pages.padel.index');
     }
+    public function hijabstore(){
+        return view('pages.hijabstore.index');
+
+    }
 }
