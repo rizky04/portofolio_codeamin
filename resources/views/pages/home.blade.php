@@ -104,7 +104,7 @@
                             @if($skills->isNotEmpty())
                             <div class="pl-5">
                                 <span class="text-indigo-300">stack</span><span class="text-white/50">: [</span>
-                                <div class="pl-5">@foreach($skills->flatten()->take(4) as $s)<span class="text-green-300">"{{ $s->name }}"</span>@if(!$loop->last)<span class="text-white/50">, </span>@endif @endforeach</div>
+                                <div class="pl-5">@foreach($skills->flatten()->take(10) as $s)<span class="text-green-300">"{{ $s->name }}"</span>@if(!$loop->last)<span class="text-white/50">, </span>@endif @endforeach</div>
                                 <span class="text-white/50">];</span>
                             </div>
                             @endif
