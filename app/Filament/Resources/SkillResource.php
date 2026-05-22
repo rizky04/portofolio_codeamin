@@ -28,6 +28,7 @@ class SkillResource extends Resource
                 'devops' => 'DevOps',
                 'tools' => 'Tools',
                 'soft' => 'Soft Skill',
+                'database' => 'Database',
             ]),
             Forms\Components\Select::make('level')->label('Level')->required()->options([
                 'beginner' => 'Beginner',

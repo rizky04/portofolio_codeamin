@@ -106,6 +106,7 @@
                 'devops'    => ['label' => 'DevOps',      'color' => 'bg-[#00685d]/10 text-[#00685d]',   'dot' => 'bg-[#00685d]'],
                 'tools'     => ['label' => 'Tools',       'color' => 'bg-amber-100 text-amber-700',      'dot' => 'bg-amber-500'],
                 'soft'      => ['label' => 'Soft Skills', 'color' => 'bg-violet-100 text-violet-700',    'dot' => 'bg-violet-500'],
+                'database'      => ['label' => 'Database', 'color' => 'bg-violet-100 text-violet-700',    'dot' => 'bg-violet-500'],
             ];
             $levelBadge = [
                 'beginner'     => 'bg-slate-100 text-slate-500',
